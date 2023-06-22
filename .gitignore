@@ -1,0 +1,8 @@
+*.zip
+Conversation/
+Localization/
+build/
+dist/
+*.exe
+*.pkl
+__pycache__/
