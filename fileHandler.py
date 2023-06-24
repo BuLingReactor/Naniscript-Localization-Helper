@@ -126,7 +126,26 @@ class FileHandler:
             original_text = original_text.strip()
             translated_text = translated_text.strip()
 
-                
         if block_entered:
             data.append([ID, speaker, original_text, translated_text])
         return data
+    
+    def copyToClipboardProgress(self, clipboard):
+        clipboard.setText("TE")
+
+    def exportAllToSingleCSV(self, filename):
+        df = pd.concat(self.data.values())
+        df.to_csv(filename, index=False)
+
+    def exportAllToXlsx(self, filename):
+        df = pd.concat(self.data.values())
+        df.to_excel(filename, index=False)
+
+    def importFromCSV(self, filename):
+        df = pd.read_csv(filename)
+        df = df[df['Translated Text'].notna()]
+        for sheet in self.data.values():
+            for index, row in sheet.iterrows():
+                row_id = row[0]
+                if df[df['ID'] == row_id].empty == False and df[df['ID'] == row_id].values[0][3] != '':
+                    row[3] = df[df['ID'] == row_id].values[0][3]

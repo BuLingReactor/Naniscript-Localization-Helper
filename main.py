@@ -4,6 +4,7 @@ import sys
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    clipboard = app.clipboard()
+    window = MainWindow(clipboard)
     window.show()
     sys.exit(app.exec_())
