@@ -11,6 +11,7 @@ class FileHandler:
 
     def setOriginalFolderPath(self, path):
         self.original_folder_path = path
+        self.data = {}
 
     def setLocalizationFolderPath(self, path):
         self.localization_folder_path = path
